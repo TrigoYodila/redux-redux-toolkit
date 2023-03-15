@@ -1,5 +1,6 @@
 //import redux
 const redux = require('redux')
+const reduxLogger = require('redux-logger')
 
 //create store
 const createStore = redux.createStore
@@ -7,6 +8,10 @@ const createStore = redux.createStore
 const bindActionsCreators = redux.bindActionCreators
 //create a combine reducers
 const combineReducers = redux.combineReducers
+//create a logger
+const logger = reduxLogger.createLogger()
+//create a middleware
+const applyMiddleware = redux.applyMiddleware
 
 const CAKE_ORDERED = "CAKE_ORDERED"
 const CAKE_RESTOCKED = "CAKE_RESTOCKED"
@@ -101,15 +106,16 @@ const rootReducer = combineReducers({
 
 //create store
 // const store = createStore(reducer)
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 //expose state with getState method and save that initialstate in console
 console.log('Initial state ', store.getState())
 
 //configure a listener for store
 //save the state in console after each update 
-const unsubscribe = store.subscribe(() =>
-  console.log("update state ", store.getState())
+const unsubscribe = store.subscribe(() => {}
+  // console.log("update state ", store.getState())
+
 );
 
 //repartition of state
