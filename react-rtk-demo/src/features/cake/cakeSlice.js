@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 // initialState
 const initialState = {
-    numOfCaskes:10
+    numOfCakes:10
 }
 // create a tranche
 const cakeSlice = createSlice({
@@ -11,10 +11,10 @@ const cakeSlice = createSlice({
     initialState,
     reducers:{
         ordered:(state) => {
-            state.numOfCaskes--
+            state.numOfCakes--;
         },
         restocked:(state,action)=>{
-            state.numOfCaskes += action.payload
+            state.numOfCakes += action.payload;
         }
     }
 })

@@ -1,13 +1,25 @@
 import React from "react";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { ordered, restocked } from "./icecreamSlice";
 
 const IceCreamView = () => {
+  const [value, setValue] = useState(1);
+  const numOficeCream = useSelector((state) => state.icecream.numOficeCream);
+  const dispatch = useDispatch();
+
   return (
     <div>
-      <h2>Number of ice creams -</h2>
-      <button>Ordered ice cream</button>
-      <button>Restock ice cream</button>
+      <h2>Number of ice creams - {numOficeCream}</h2>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(parseInt(e.target.value))}
+      />
+      <button onClick={() => dispatch(ordered())}>Ordered ice cream</button>
+      <button onClick={() => dispatch(restocked(value))}>Restock ice cream</button>
     </div>
   );
 };
 
-export default IceCreamView
+export default IceCreamView;
