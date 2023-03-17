@@ -106,16 +106,18 @@ const rootReducer = combineReducers({
 
 //create store
 // const store = createStore(reducer)
-const store = createStore(rootReducer, applyMiddleware(logger))
+//const store = createStore(rootReducer, applyMiddleware(logger))
+
+const store = require('./rtk-demo/app/store')
+const fetchUsers = require('./rtk-demo/features/user/userSlice').fetchUsers
 
 //expose state with getState method and save that initialstate in console
 console.log('Initial state ', store.getState())
 
 //configure a listener for store
 //save the state in console after each update 
-const unsubscribe = store.subscribe(() => {}
-  // console.log("update state ", store.getState())
-
+const unsubscribe = store.subscribe(() =>
+  console.log("update state ", store.getState())
 );
 
 //repartition of state
@@ -131,18 +133,20 @@ const unsubscribe = store.subscribe(() => {}
 // store.dispatch(restockedCake(3))
 
 //used bindActionscreators
-const actions = bindActionsCreators({orderCake, restockedCake, orderIceCream, restockedIceCream}, store.dispatch)
+//const actions = bindActionsCreators({orderCake, restockedCake, orderIceCream, restockedIceCream}, store.dispatch)
 //call actions
-actions.orderCake()
-actions.orderCake()
-actions.orderCake()
-actions.restockedCake(3)
+// actions.orderCake()
+// actions.orderCake()
+// actions.orderCake()
+// actions.restockedCake(3)
 
-actions.orderIceCream()
-actions.orderIceCream()
-actions.orderIceCream()
-actions.orderIceCream(3)
+// actions.orderIceCream()
+// actions.orderIceCream()
+// actions.orderIceCream()
+// actions.orderIceCream(3)
+
+store.dispatch(fetchUsers())
 
 //unsubscribe in all update in store
-unsubscribe()
+// unsubscribe()
 
