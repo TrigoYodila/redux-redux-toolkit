@@ -14,7 +14,7 @@ const initialState = {
 // generate pending, fulfilled and rehected actions types
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
    return axios.get("https://jsonplaceholder.typicode.com/users")
-    .then((response)=>response.data.map((user)=>user.id))
+    .then((response)=>response.data)
 })
 
 // create a slice
